@@ -16,9 +16,6 @@ class Phone extends Emitter
         @emit "disconnect"
 
       phone:
-        ringTone: @opt.ringTone
-        ringback: @opt.ringbackTone
-
         onIncomingCall: (e) =>
           @emit "call", new Call e.call
 
@@ -28,8 +25,14 @@ class Phone extends Emitter
         onMessage: (e) =>
           @emit 'message', e.message
 
+  connected: -> @_phono.connected()
   number: -> @_phono.sessionId
-    
+  tones: (b) -> @_phono.tones b
+  headset: (b) -> @_phono.headset b
+  wideband: (b) -> @_phono.wideband b
+  ringTone: (s) -> @_phono.ringTone s
+  ringbackTone: (s) -> @_phono.ringbackTone s
+
   message: (to, body) ->
     @_phono.messaging.send to, body
     return @

@@ -18,7 +18,7 @@
 
 ## WTF $
 
-Sadly this library has a jQuery dependency. Why does something that makes phone calls need to be tied to a DOM manipulation toolkit? Don't ask me - send complaints to @phonosdk. Removing the dependency on jQuery would require a rewrite of phonosdk which this library uses.
+Sadly this library has a jQuery dependency.
 
 ## Usage
 

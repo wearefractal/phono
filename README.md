@@ -25,8 +25,15 @@ Sadly this library has a jQuery dependency. Why does something that makes phone 
 ```coffee-script
 phone = phono.createClient "API KEY"
 
+phone.on "call", (call) ->
+  call.answer()
+
+phone.on "message", (msg) ->
+  console.log "#{msg.from}: #{msg.body}"
+  phone.message msg.from, "Stop talking to me"
+
 phone.ready ->
-  console.log "My number is sip:#{phone.number()}"
+  console.log "My number is #{phone.number()}"
 
   call = phone.call "480-555-5555"
 
@@ -39,9 +46,6 @@ phone.ready ->
 
   call.on "end", ->
     console.log "Finished"
-
-  phone.on "call", (call) ->
-    call.answer()
 ```
 
 ## Examples

@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>Non-shit wrapper around phono</td>
+<td>Wrapper around phono</td>
 </tr>
 <tr>
 <td>Node Version</td>

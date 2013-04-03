@@ -1,14 +1,14 @@
-![status](https://secure.travis-ci.org/wearefractal/APPNAME.png?branch=master)
+![status](https://secure.travis-ci.org/wearefractal/phono.png?branch=master)
 
 ## Information
 
 <table>
 <tr> 
-<td>Package</td><td>APPNAME</td>
+<td>Package</td><td>phono</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>NOTHING HERE YET</td>
+<td>Non-shit wrapper around phono</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -16,15 +16,37 @@
 </tr>
 </table>
 
+## WTF $
+
+Sadly this library has a jQuery dependency. Why does something that makes phone calls need to be tied to a DOM manipulation toolkit? Don't ask me - send complaints to @phonosdk. Removing the dependency on jQuery would require a rewrite of phonosdk which this library uses.
+
 ## Usage
 
 ```coffee-script
-NOTHING HERE YET
+phone = phono.createClient "API KEY"
+
+phone.ready ->
+  console.log "My number is sip:#{phone.number()}"
+
+  call = phone.call "480-555-5555"
+
+  call.on "ring", ->
+    console.log "Ringing..."
+
+  call.on "answer", ->
+    console.log "Answered"
+    call.press 1 # press 1 digit
+
+  call.on "end", ->
+    console.log "Finished"
+
+  phone.on "call", (call) ->
+    call.answer()
 ```
 
 ## Examples
 
-You can view more examples in the [example folder.](https://github.com/wearefractal/APPNAME/tree/master/examples)
+You can view more examples in the [example folder.](https://github.com/wearefractal/phono/tree/master/examples)
 
 ## LICENSE
 

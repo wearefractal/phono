@@ -1,11 +1,13 @@
 {
-  "name": "APPNAME",
+  "name": "phono",
   "version": "0.0.1",
   "dependencies": {
     "component/emitter":"*"
   },
   "main": "dist/main.js",
   "scripts": [
-    "dist/main.js"
+    "dist/main.js",
+    "dist/Call.js",
+    "dist/Phone.js"
   ]
 }

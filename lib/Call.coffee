@@ -1,5 +1,3 @@
-require '../phono-sdk-dontuse'
-
 Emitter = require 'emitter'
 
 class Call extends Emitter

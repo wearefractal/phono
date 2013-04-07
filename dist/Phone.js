@@ -27,8 +27,6 @@ Phone = (function(_super) {
         return _this.emit("disconnect");
       },
       phone: {
-        ringTone: this.opt.ringTone,
-        ringback: this.opt.ringbackTone,
         onIncomingCall: function(e) {
           return _this.emit("call", new Call(e.call));
         },
@@ -44,8 +42,32 @@ Phone = (function(_super) {
     });
   }
 
+  Phone.prototype.connected = function() {
+    return this._phono.connected();
+  };
+
   Phone.prototype.number = function() {
     return this._phono.sessionId;
+  };
+
+  Phone.prototype.tones = function(b) {
+    return this._phono.tones(b);
+  };
+
+  Phone.prototype.headset = function(b) {
+    return this._phono.headset(b);
+  };
+
+  Phone.prototype.wideband = function(b) {
+    return this._phono.wideband(b);
+  };
+
+  Phone.prototype.ringTone = function(s) {
+    return this._phono.ringTone(s);
+  };
+
+  Phone.prototype.ringbackTone = function(s) {
+    return this._phono.ringbackTone(s);
   };
 
   Phone.prototype.message = function(to, body) {

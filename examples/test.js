@@ -1,4 +1,8 @@
-var phone = phono.createClient("f12dc371538c973b3cb200b43b6c594d");
+var opt = {
+  proxy: "app:9990013298"
+};
+
+var phone = phono.createClient("f12dc371538c973b3cb200b43b6c594d", opt);
 
 phone.on("message", function(msg) {
   console.log(msg);
@@ -10,7 +14,7 @@ phone.ready(function(){
 
   phone.message(phone.number(), "Hey");
 
-  window.call = phone.call("800-777-3456");
+  window.call = phone.call("480-252-5373");
 
   call.on("ring", function(){
     console.log("ring");

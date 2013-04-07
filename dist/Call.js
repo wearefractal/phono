@@ -8,10 +8,11 @@ Emitter = require('emitter');
 Call = (function(_super) {
   __extends(Call, _super);
 
-  function Call(_call) {
+  function Call(_call, phone) {
     var _this = this;
 
     this._call = _call;
+    this.phone = phone;
     this._call.bind({
       onRing: function() {
         return _this.emit("ring");

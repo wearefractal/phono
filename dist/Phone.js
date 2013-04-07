@@ -40,6 +40,7 @@ Phone = (function(_super) {
         }
       }
     });
+    this.proxy = this.opt.proxy;
   }
 
   Phone.prototype.connected = function() {
@@ -75,11 +76,30 @@ Phone = (function(_super) {
     return this;
   };
 
-  Phone.prototype.call = function(num) {
-    var call;
+  Phone.prototype.call = function(num, opt) {
+    var call, _ref;
 
-    call = this._phono.phone.dial(num);
-    return new Call(call);
+    if (opt == null) {
+      opt = {};
+    }
+    if ((_ref = opt.headers) == null) {
+      opt.headers = [];
+    }
+    if (this.proxy) {
+      if (opt.caller) {
+        opt.headers.push({
+          name: "x-caller",
+          value: opt.caller
+        });
+      }
+      opt.headers.push({
+        name: "x-callee",
+        value: num
+      });
+      num = this.proxy;
+    }
+    call = this._phono.phone.dial(num, opt);
+    return new Call(call, this);
   };
 
   Phone.prototype.ready = function(fn) {

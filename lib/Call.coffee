@@ -1,7 +1,7 @@
 Emitter = require 'emitter'
 
 class Call extends Emitter
-  constructor: (@_call) ->
+  constructor: (@_call, @phone) ->
     @_call.bind
       onRing: => @emit "ring"
       onAnswer: => @emit "answer"

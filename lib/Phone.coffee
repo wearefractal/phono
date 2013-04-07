@@ -25,6 +25,9 @@ class Phone extends Emitter
         onMessage: (e) =>
           @emit 'message', e.message
 
+    @proxy = @opt.proxy
+
+
   connected: -> @_phono.connected()
   number: -> @_phono.sessionId
   tones: (b) -> @_phono.tones b
@@ -37,9 +40,22 @@ class Phone extends Emitter
     @_phono.messaging.send to, body
     return @
 
-  call: (num) ->
-    call = @_phono.phone.dial num
-    return new Call call
+  call: (num, opt={}) ->
+    opt.headers ?= []
+
+    if @proxy
+      if opt.caller
+        opt.headers.push
+          name: "x-caller"
+          value: opt.caller
+      opt.headers.push
+        name: "x-callee"
+        value: num
+
+      num = @proxy
+
+    call = @_phono.phone.dial num, opt
+    return new Call call, @
 
   ready: (fn) ->
     if @_ready
